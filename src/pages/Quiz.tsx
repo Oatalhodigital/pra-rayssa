@@ -185,9 +185,7 @@ export function Quiz({ onConcluido }: QuizProps) {
           <h1 className="text-4xl font-serif text-vinho mb-4">
             Rayssa quentona 🔥
           </h1>
-          <p className="text-lg text-gray-600 mb-8">
-            Tem romance, tem zoeira e tem putaria leve… responde com sinceridade, tá? 😏
-          </p>
+          <div className="mb-8" />
           <Botao onClick={() => {
             setComecou(true);
             setMemeAtual(0);
