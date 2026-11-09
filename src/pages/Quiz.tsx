@@ -94,7 +94,7 @@ export function Quiz({ onConcluido }: QuizProps) {
 
   const handleProximo = () => {
     // Verificar se deve mostrar meme após esta pergunta
-    const pontosMeme = [7, 14]; // IDs de perguntas após as quais mostrar meme
+    const pontosMeme = [3, 7, 11, 14, 17]; // IDs de perguntas após as quais mostrar meme
     if (pontosMeme.includes(perguntaAtual.id)) {
       setMemeAtual(perguntaAtual.id);
       setMostrarMeme(true);
@@ -207,6 +207,22 @@ export function Quiz({ onConcluido }: QuizProps) {
         tipo: 'video' as const,
         mediaUrl: import.meta.env.BASE_URL + 'memes/bom-dia.mp4',
       };
+    } else if (memeAtual === 3) {
+      memeConfig = {
+        titulo: 'Pausa pro meme 😂',
+        emoji: '📱',
+        tipo: 'instagram' as const,
+        instagramUrl: 'https://www.instagram.com/reel/DfA6gN0Skt7/',
+        texto: 'Assiste isso e depois me diz se não é a gente kkkk',
+      };
+    } else if (memeAtual === 11) {
+      memeConfig = {
+        titulo: 'Mais um pra conta 😂',
+        emoji: '🤣',
+        tipo: 'instagram' as const,
+        instagramUrl: 'https://www.instagram.com/reel/DfLJ1fJzTp6/',
+        texto: 'Respira, ri e volta que ainda tem pergunta 😏',
+      };
     } else if (memeAtual === 7) {
       memeConfig = {
         titulo: 'Tá certo? 🕶️',
@@ -219,7 +235,7 @@ export function Quiz({ onConcluido }: QuizProps) {
         titulo: 'Escuta isso 👂',
         emoji: '🎵',
         tipo: 'audio' as const,
-        mediaUrl: import.meta.env.BASE_URL + 'memes/audio.mpeg',
+        mediaUrl: import.meta.env.BASE_URL + 'memes/audio.mp3',
       };
     } else {
       memeConfig = {
