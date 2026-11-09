@@ -24,6 +24,7 @@ export function Quiz({ onConcluido }: QuizProps) {
   const [concluido, setConcluido] = useState(false);
   const [mostrarMeme, setMostrarMeme] = useState(false);
   const [memeAtual, setMemeAtual] = useState<number | null>(null);
+  const [comecou, setComecou] = useState(false);
   const [idSessao] = useState(() => {
     const existing = localStorage.getItem(SESSION_KEY);
     if (existing) return existing;
@@ -109,8 +110,10 @@ export function Quiz({ onConcluido }: QuizProps) {
   };
 
   const handleContinuarMeme = () => {
+    const eraAbertura = memeAtual === 0;
     setMostrarMeme(false);
     setMemeAtual(null);
+    if (eraAbertura) return; // meme da abertura: só começa o quiz, sem pular a pergunta 1
     if (indiceAtual < perguntas.length - 1) {
       setIndiceAtual(indiceAtual + 1);
     } else {
@@ -170,7 +173,7 @@ export function Quiz({ onConcluido }: QuizProps) {
   };
 
   // Tela de abertura
-  if (indiceAtual === 0 && !respostaAtual && !concluido) {
+  if (!comecou && indiceAtual === 0 && !respostaAtual && !concluido) {
     return (
       <div className="min-h-screen bg-creme flex flex-col items-center justify-center p-6 relative">
         <FloatingHearts />
@@ -180,15 +183,13 @@ export function Quiz({ onConcluido }: QuizProps) {
           className="text-center max-w-md"
         >
           <h1 className="text-4xl font-serif text-vinho mb-4">
-            Oi, Rayssa 💌
+            Rayssa quentona 🔥
           </h1>
-          <p className="text-xl text-gray-700 mb-4">
-            O Leandro fez uma coisa só pra você.
-          </p>
           <p className="text-lg text-gray-600 mb-8">
             Tem romance, tem zoeira e tem putaria leve… responde com sinceridade, tá? 😏
           </p>
           <Botao onClick={() => {
+            setComecou(true);
             setMemeAtual(0);
             setMostrarMeme(true);
           }}>Bora, tô curiosa</Botao>
